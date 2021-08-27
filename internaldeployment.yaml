@@ -1,0 +1,24 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: event-demo-api
+spec: 
+  selector:
+    matchLabels:
+      app: event-demo-api
+  replicas: 1 # tells deployment to run 1 pod matching the template
+  template:
+    metadata:
+      labels:
+        app: event-demo-api
+    spec:
+      containers:
+      - name: event-demo-api
+        image: gcr.io/dtc082021-222/event-internal:1.0.1
+        ports:
+        - containerPort: 8082
+        env: 
+        - name: GOOGLE_CLOUD_PROJECT
+          value: "dtc082021-222"
+            
+        
